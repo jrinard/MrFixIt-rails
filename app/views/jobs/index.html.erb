@@ -1,10 +1,14 @@
 <h1>Jobs List</h1>
 
 <h3>Not Claimed: </h3>
+
 <ul>
   <% @jobs.each do |job| %>
     <% if job.pending == false %>
-      <li><%= link_to job.title, job_path(job) %></li>
+      <li id="job_link_<%= job.id %>">
+        <%= link_to job.title, job_path(job) %> |
+      <%= link_to "Cancel", job_path(job),:data => {:confirm => "Are you sure?",:method => "delete"}, remote: true  %>
+      </li>
     <% end %>
 
   <% end %>
@@ -14,16 +18,30 @@
 <ul>
   <% @jobs.each do |job| %>
   <% if job.pending == true %>
-    <li><%= link_to job.title, job_path(job) %></li>
+    <li id="job_link_<%= job.id %>">
+      <%= link_to job.title, job_path(job) %> |
+    <%= link_to "Cancel", job_path(job),:data => {:confirm => "Are you sure?",:method => "delete"}, remote: true  %>
+
+
+  <!-- Josh Relook at this!!!! -->
+    <% if job.worker_id === current_worker.id %>
+        <%= current_worker.email %>
+    <% end %>
+
+
+    </li>
   <% end %>
   <% end %>
 </ul>
 
-<h3>Finished: </h3>
+<h3>Completed: </h3>
 <ul>
   <% @jobs.each do |job| %>
   <% if job.completed == true %>
-    <li><%= job.title %></li>
+  <li id="job_link_<%= job.id %>">
+    <%= job.title %> |
+  <%= link_to "Remove", job_path(job),:data => {:confirm => "Are you sure?",:method => "delete"}, remote: true  %>
+  </li>
   <% end %>
   <% end %>
 </ul>
