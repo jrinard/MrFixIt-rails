@@ -4,6 +4,7 @@ class WorkersController < ApplicationController
     render :show
   end
 
+#### Josh this needs looked at
   def new
     # current_worker refers to a worker account currently logged in. current_user refers to a user account currently logged in.
     if current_worker

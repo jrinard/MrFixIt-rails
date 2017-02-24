@@ -1,30 +1,35 @@
 class JobsController < ApplicationController
-
   def index
     @jobs = Job.all
-  end
-
-  def new
-   @job = Job.new
-   render :new
   end
 
   def show
     @job = Job.find(params[:id])
   end
 
+  def new
+   @job = Job.new
+  end
+
   def create
     @job = Job.new(job_params)
     if @job.save
+      flash[:notice] = "Job Successfully Created"
       redirect_to jobs_path
     else
+      flash[:notice] = "Job NOT Created"
       render :new
     end
   end
 
+## added
+  def edit
+    @job = Job.find(params[:id])
+  end
+
   def update
     @job = Job.find(params[:id])
-    if current_worker
+    if current_worker #?? current_user
       if @job.update(pending: true, worker_id: current_worker.id)
         redirect_to worker_path(current_worker)
         flash[:notice] = "You've successfully claimed this job."
@@ -39,10 +44,10 @@ class JobsController < ApplicationController
     end
   end
 
-private
+  ## NO DESTROY. Keep in mind
 
+private
   def job_params
     params.require(:job).permit(:title, :description)
   end
-
 end
