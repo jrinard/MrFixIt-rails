@@ -7,6 +7,10 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
+    <div class="container">
+      <div class="row">
+
+
     <div class="header">
       <h1 class="page-title">Mr. Fix-It</h1>
       <h2>Crowd-sourced repairs!</h2>
@@ -14,30 +18,43 @@
     <div class="navigation-menu">
       <ul>
         <li><%= link_to "Home", root_path %></li>
-        <li><%= link_to "See All Jobs" %></li>
-        <li><%= link_to "Add Your Job", new_job_path %></li>
+        <li><%= link_to "Jobs List" %></li>
+
+<!-- WORKER LOGGED IN -->
         <% if worker_signed_in? %>
-          <p class="login-notice"><em>You're signed into your <%= current_worker.email %> <b>worker account</b></em></p>
           <li><%= link_to "Worker Dashboard", worker_path(current_worker) %></li>
+          <li><span class="grey"><%= current_worker.email %></span></li>
           <li><%= link_to "Log Out", destroy_user_session_path, :method => :delete %></li>
+
+<!-- USER LOGGED IN -->
         <% elsif user_signed_in? %>
-          <p class="login-notice"><em>You're signed in as <%= current_user.email %></em></p>
-          <li><%= link_to "Log Out", destroy_user_session_path, :method => :delete %></li>
+          <li><%= link_to "Add Job", new_job_path %></li> <!-- need to be logged in to post job -->
           <li><%= link_to "Register as a Worker", new_worker_path %></li>
+          <li><span class="grey"><%= current_user.email %></span></li>
+          <li><%= link_to "Log Out", destroy_user_session_path, :method => :delete %></li>
+
+
+<!-- NOT LOGGED IN -->
         <% else %>
-        <li><%= link_to "Register as a Worker", new_worker_path %></li>
-        <li><%= link_to "Register to Post Jobs", new_user_registration_path %></li>
-        <li><%= link_to "Log In as User", new_user_session_path %></li>
-        <li><%= link_to "Log In as Worker", new_worker_session_path %></li>
+        <li><%= link_to "Sign up User to Post Jobs", new_user_registration_path %></li>
+        <li><%= link_to "Sign up as Worker", new_worker_path %></li>
+        <li><%= link_to "User Login", new_user_session_path %></li>
+        <li><%= link_to "Worker Login", new_worker_session_path %></li>
         <% end %>
+
       </ul>
-    </div>
+    </div> <!-- Nav end -->
+
+
     <div class="content">
-    <div class="flash-messages">
-      <%= flash[:alert] %>
-      <h3><%= flash[:notice] %></h3>
+      <div class="flash-messages">
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
       </div>
-      <%= yield %>
+        <%= yield %>
     </div>
+
+  </div><!-- row end -->
+  </div> <!-- container end -->
   </body>
 </html>
