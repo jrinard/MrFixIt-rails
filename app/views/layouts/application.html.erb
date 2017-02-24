@@ -18,7 +18,7 @@
     <div class="navigation-menu">
       <ul>
         <li><%= link_to "Home", root_path %></li>
-        <li><%= link_to "Jobs List" %></li>
+        <li><%= link_to "Jobs List", jobs_path %></li>
 
 <!-- WORKER LOGGED IN -->
         <% if worker_signed_in? %>
@@ -32,7 +32,6 @@
           <li><%= link_to "Register as a Worker", new_worker_path %></li>
           <li><span class="grey"><%= current_user.email %></span></li>
           <li><%= link_to "Log Out", destroy_user_session_path, :method => :delete %></li>
-
 
 <!-- NOT LOGGED IN -->
         <% else %>
