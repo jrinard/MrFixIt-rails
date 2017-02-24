@@ -1,10 +1,17 @@
-<h1> <%= @job.title %> </h1>
+<div class="before-claim">
 
+<h1> <%= @job.title %> </h1>
 <h3><%= @job.description %></h3>
 
 <% if @job.pending %>
-  <p>Someone has already claimed this job; it's currently pending.</p>
+  <p>Job status: Claimed and Pending</p>
 <% else %>
-<p>No one has claimed this job!</p>
-<%= link_to "click here to claim it now", job_path(@job), :method => "patch" %>
+  <p>Job status: Not Claimed</p>
+  <% if current_worker %>
+  <%= link_to "Claim Job", job_path(@job), :method => "patch", remote: true %>
+  <% end %>
 <% end %>
+</div>
+
+<div class="after-claim">
+</div>

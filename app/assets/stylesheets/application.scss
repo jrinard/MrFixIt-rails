@@ -65,6 +65,14 @@ body {
   color: #d2d2d2;
 }
 
+li {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+}
+
 // temporary note
 // [#<Job id: 1, title: "first job", description: "details", completed: false, pending: false, worker_id: nil>,
 // #<Job id: 2, title: "user job", description: "details", completed: false, pending: false, worker_id: nil>,
