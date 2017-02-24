@@ -14,10 +14,8 @@ class JobsController < ApplicationController
   def create
     @job = Job.new(job_params)
     if @job.save
-      flash[:notice] = "Job Successfully Created"
       redirect_to jobs_path
     else
-      flash[:notice] = "Job NOT Created"
       render :new
     end
   end
@@ -48,6 +46,6 @@ class JobsController < ApplicationController
 
 private
   def job_params
-    params.require(:job).permit(:title, :description)
+    params.require(:job).permit(:title, :description, :worker_id)
   end
 end

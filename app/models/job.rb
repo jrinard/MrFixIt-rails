@@ -1,6 +1,5 @@
 class Job < ActiveRecord::Base
-  belongs_to :user # added may not need to connect job to user.
-  belongs_to :worker # added
+  # belongs_to :worker # added   stops jobs from creating!!!
 
   validates :title, :presence => true
 end
