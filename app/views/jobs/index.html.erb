@@ -1,7 +1,29 @@
-<h1>Jobs</h1>
+<h1>Jobs List</h1>
 
+<h3>Not Claimed: </h3>
 <ul>
   <% @jobs.each do |job| %>
-  <li><%= link_to job.title, job_path(job) %></li>
+    <% if job.pending == false %>
+      <li><%= link_to job.title, job_path(job) %></li>
+    <% end %>
+
+  <% end %>
+</ul>
+
+<h3>Claimed: </h3>
+<ul>
+  <% @jobs.each do |job| %>
+  <% if job.pending == true %>
+    <li><%= link_to job.title, job_path(job) %></li>
+  <% end %>
+  <% end %>
+</ul>
+
+<h3>Finished: </h3>
+<ul>
+  <% @jobs.each do |job| %>
+  <% if job.completed == true %>
+    <li><%= job.title %></li>
+  <% end %>
   <% end %>
 </ul>

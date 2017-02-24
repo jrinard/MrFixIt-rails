@@ -4,12 +4,21 @@
 <h3><%= @job.description %></h3>
 
 <% if @job.pending %>
-  <p>Job status: Claimed and Pending</p>
-<% else %>
+<!-- Claimed -->
+  <p>Job status: Claimed</p>
+  <%= link_to "Complete Job", job_path(@job, :completed => true), :method => "patch", remote: true %>
+<!-- - -->
+
+<% elsif %>
+
+<!-- Not claimed -->
   <p>Job status: Not Claimed</p>
   <% if current_worker %>
-  <%= link_to "Claim Job", job_path(@job), :method => "patch", remote: true %>
+  <%= link_to "Claim Job", job_path(@job, :pending => true), :method => "patch", remote: true %>
   <% end %>
+<!-- - -->
+
+
 <% end %>
 </div>
 

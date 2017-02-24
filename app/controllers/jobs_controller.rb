@@ -20,18 +20,26 @@ class JobsController < ApplicationController
     end
   end
 
-## added
+## Added
   def edit
     @job = Job.find(params[:id])
   end
 
-## Job being claimed
+## Job Status Changing
   def update
     @job = Job.find(params[:id])
     if current_worker
-      if @job.update(pending: true, worker_id: current_worker.id)
-        respond_to do |format|
-        format.html { redirect_to job_path(@job) }
+      if params[:pending]
+        @job.update(pending: true, worker_id: current_worker.id)
+        respond_to  do |format|
+        format.html { redirect_to job_path(@job.id) }
+        format.js
+        end
+      elsif params[:completed]
+        @job.update(completed: true)
+        @job.update(pending: nil)
+        respond_to  do |format|
+        format.html { redirect_to job_path(@job.id) }
         format.js
         end
       else
