@@ -3,7 +3,6 @@
 <%= link_to "Add Job", new_job_path, remote: true, :class => "btn"  %>
 <div id="new_job_form"></div>
 
-
 <div class="well">
 <h3 >Not Claimed</h3>
 
@@ -19,7 +18,6 @@
   <% end %>
 </ul>
 </div>
-
 <div class="well">
 <h3>Claimed</h3>
 <ul>
@@ -28,14 +26,11 @@
     <li id="job_link_<%= job.id %>">
       <%= link_to job.title, job_path(job) %> |
       <%= link_to "Cancel", job_path(job),:data => {:confirm => "Are you sure?",:method => "delete"}, remote: true  %>
-
-
     </li>
   <% end %>
   <% end %>
 </ul>
 </div>
-
 <div class="well">
 <h3>Completed</h3>
 <ul>
