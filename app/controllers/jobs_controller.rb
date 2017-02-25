@@ -24,7 +24,6 @@ class JobsController < ApplicationController
     end
   end
 
-## Added
   def edit
     @job = Job.find(params[:id])
   end
@@ -51,7 +50,6 @@ class JobsController < ApplicationController
         flash[:notice] = "Something went wrong!"
       end
     else
-      # We need to streamline this process better in the future! - Mr. Fix-It.
       flash[:notice] = 'You must have a worker account to claim a job. Register for one using the link in the navbar above.'
       redirect_to job_path(@job)
     end

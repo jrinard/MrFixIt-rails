@@ -1,5 +1,3 @@
-#######UPDATED with 1 concern
-
 ActiveRecord::Schema.define(version: 20170221181151) do
 
   enable_extension "plpgsql"
@@ -9,7 +7,7 @@ ActiveRecord::Schema.define(version: 20170221181151) do
     t.string  "description"
     t.boolean "completed",   default: false
     t.boolean "pending",     default: false
-    t.integer "worker_id"  # may need to be user_id   JOSH!!!
+    t.integer "worker_id"
   end
 
   create_table "users", force: :cascade do |t|
