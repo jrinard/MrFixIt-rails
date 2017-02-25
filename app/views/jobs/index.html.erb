@@ -1,8 +1,11 @@
 <h1>Jobs List</h1>
 
-        <li><%= link_to "Add Job", new_job_path, remote: true, :class => "btn"  %></li>
+<%= link_to "Add Job", new_job_path, remote: true, :class => "btn"  %>
+<div id="new_job_form"></div>
 
-<h3>Not Claimed: </h3>
+
+<div class="well">
+<h3 >Not Claimed</h3>
 
 <ul id="all_jobs">
   <% @jobs.each do |job| %>
@@ -15,8 +18,10 @@
 
   <% end %>
 </ul>
+</div>
 
-<h3>Claimed: </h3>
+<div class="well">
+<h3>Claimed</h3>
 <ul>
   <% @jobs.each do |job| %>
   <% if job.pending == true %>
@@ -29,8 +34,10 @@
   <% end %>
   <% end %>
 </ul>
+</div>
 
-<h3>Completed: </h3>
+<div class="well">
+<h3>Completed</h3>
 <ul>
   <% @jobs.each do |job| %>
   <% if job.completed == true %>
@@ -41,6 +48,4 @@
   <% end %>
   <% end %>
 </ul>
-
-
-<div id="new_job_form"></div>
+</div>
