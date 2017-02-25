@@ -18,8 +18,6 @@ _Mr. Fix-It is the one-stop-shop to crowd-source all your home repair needs. Nee
 
 ## Development Roadmap
 
-_Mr. Fix-It is still a work in progress. Here's what we've done so far, and what we'd still like to add:_
-
 ### Completed
 
 _The following functionality is present in our application:_
@@ -29,11 +27,6 @@ _The following functionality is present in our application:_
 * Basic users may post their jobs to the jobs list.
 * Basic users have the option to sign up for a Worker account, which allows them to claim and complete jobs.
 * A worker can claim a job, and see it in their "Worker Dashboard"
-
-### Still Needed
-
-_The following must still be implemented:_
-
 * Workers must be able to claim a job **via an AJAX action**.
 * A worker must be able to mark which jobs they're actively working on **using AJAX**.
 * Workers must be able to mark jobs "complete" **using AJAX**.
