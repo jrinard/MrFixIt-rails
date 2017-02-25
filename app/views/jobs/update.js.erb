@@ -1,9 +1,9 @@
 
 $('.before-claim').remove();
 
-$('.after-claim').append('<h1> <%= @job.title %> </h1><h3><%= @job.description %></h3><% if @job.pending %><p>Job status: Claimed and Pending</p><% else %><p>Job status: Not Claimed</p><% if current_worker %><%= link_to "Claim Job", job_path(@job), :method => "patch", remote: true %><% end %><% end %>')
+$('.after-claim').append('<h1> <%= @job.title %> </h1><h3><%= @job.description %></h3><h3><% if @job.pending %><%= link_to "View Dashboard", jobs_path %><% else %><% if current_worker %><%= link_to "View Dashboard", jobs_path %><% end %><% end %>')
 
-$(".notice").text("Job Claimed")
+$(".notice").text("Job Status Updated")
 setTimeout(function() {
   $(".notice").text("")
 }, 5000);
