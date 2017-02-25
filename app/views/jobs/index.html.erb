@@ -2,7 +2,7 @@
 
 <h3>Not Claimed: </h3>
 
-<ul>
+<ul id="all_jobs">
   <% @jobs.each do |job| %>
     <% if job.pending == false %>
       <li id="job_link_<%= job.id %>">
@@ -40,3 +40,6 @@
   <% end %>
   <% end %>
 </ul>
+
+
+<div id="new_job_form"></div>
