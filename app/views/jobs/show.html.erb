@@ -1,24 +1,26 @@
 <div class="before-claim">
+  <h1>Job Info</h1>
+  <h2>Title: <%= @job.title %> </h2>
+  <h3>Details:<%= @job.description %></h3>
 
-<h1>Job Info</h1>
-<h2>Title: <%= @job.title %> </h2>
-<h3>Details:<%= @job.description %></h3>
+  <% if @job.pending === true %><!-- Claimed -->
+    <p>Job status: Claimed</p>
+    <% if current_worker %>
+    <% if @job.worker_id == current_worker.id %>
+    <%= link_to "Complete Job", job_path(@job, :completed => true), :method => "patch", remote: true %>
+    <% end %>
+    <% end %>
 
-<% if @job.pending === true %><!-- Claimed -->
-  <p>Job status: Claimed</p>
-  <%= link_to "Complete Job", job_path(@job, :completed => true), :method => "patch", remote: true %>
+  <% elsif @job.pending === false %><!-- Not claimed -->
+    <p>Job status: Not Claimed</p>
+    <% if current_worker %>
+    <%= link_to "Claim Job", job_path(@job, :pending => true), :method => "patch", remote: true %>
+    <% end %>
 
-<% elsif @job.pending === false %><!-- Not claimed -->
-  <p>Job status: Not Claimed</p>
-  <% if current_worker %>
-  <%= link_to "Claim Job", job_path(@job, :pending => true), :method => "patch", remote: true %>
+    <% else %><!-- Completed -->
+    <h3>Job is completed</h3>
+    <%= link_to "View Dashboard", jobs_path %>
   <% end %>
-
-  <% else %><!-- Completed -->
-  <h3>Job is completed</h3>
-  <%= link_to "View Dashboard", jobs_path %>
-<% end %>
 </div>
 
-<div class="after-claim">
-</div>
+<div class="after-claim"></div>

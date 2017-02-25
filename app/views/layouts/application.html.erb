@@ -10,50 +10,44 @@
   <body>
     <div class="container">
       <div class="row">
+        <div class="header">
+          <h1 class="page-title">Mr. Fix-It</h1>
+          <h2>Crowd-sourced repairs!</h2>
+        </div>
+        <div class="navigation-menu">
+          <ul>
+            <li><%= link_to "Home", root_path %></li>
+            <li><%= link_to "Jobs List", jobs_path %></li>
 
+    <!-- WORKER LOGGED IN -->
+            <% if worker_signed_in? %>
+              <li><%= link_to "Dashboard", worker_path(current_worker) %></li>
+              <li><span class="grey"><%= current_worker.email %></span></li>
+              <li><%= link_to "Log Out", destroy_user_session_path, :method => :delete %></li>
 
-    <div class="header">
-      <h1 class="page-title">Mr. Fix-It</h1>
-      <h2>Crowd-sourced repairs!</h2>
-    </div>
-    <div class="navigation-menu">
-      <ul>
-        <li><%= link_to "Home", root_path %></li>
-        <li><%= link_to "Jobs List", jobs_path %></li>
+    <!-- USER LOGGED IN -->
+            <% elsif user_signed_in? %>
+              <li><%= link_to "Register as a Worker", new_worker_path %></li>
+              <li><span class="grey"><%= current_user.email %></span></li>
+              <li><%= link_to "Log Out", destroy_user_session_path, :method => :delete %></li>
 
-<!-- WORKER LOGGED IN -->
-        <% if worker_signed_in? %>
-          <li><%= link_to "Dashboard", worker_path(current_worker) %></li>
-          <li><span class="grey"><%= current_worker.email %></span></li>
-          <li><%= link_to "Log Out", destroy_user_session_path, :method => :delete %></li>
-
-<!-- USER LOGGED IN -->
-        <% elsif user_signed_in? %>
-          <li><%= link_to "Register as a Worker", new_worker_path %></li>
-          <li><span class="grey"><%= current_user.email %></span></li>
-          <li><%= link_to "Log Out", destroy_user_session_path, :method => :delete %></li>
-
-<!-- NOT LOGGED IN -->
-        <% else %>
-        <li><%= link_to "Sign up User to Post Jobs", new_user_registration_path %></li>
-        <li><%= link_to "Sign up as Worker", new_worker_path %></li>
-        <li><%= link_to "User Login", new_user_session_path %></li>
-        <li><%= link_to "Worker Login", new_worker_session_path %></li>
-        <% end %>
-
-      </ul>
-    </div> <!-- Nav end -->
-
-
-    <div class="content">
-      <div class="flash-messages">
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
-      </div>
-        <%= yield %>
-    </div>
-
-  </div><!-- row end -->
-  </div> <!-- container end -->
+    <!-- NOT LOGGED IN -->
+            <% else %>
+              <li><%= link_to "Sign up User to Post Jobs", new_user_registration_path %></li>
+              <li><%= link_to "Sign up as Worker", new_worker_path %></li>
+              <li><%= link_to "User Login", new_user_session_path %></li>
+              <li><%= link_to "Worker Login", new_worker_session_path %></li>
+            <% end %>
+          </ul>
+        </div> <!-- Nav end -->
+        <div class="content">
+          <div class="flash-messages">
+            <p class="notice"><%= notice %></p>
+            <p class="alert"><%= alert %></p>
+          </div>
+            <%= yield %>
+        </div>
+      </div><!-- row end -->
+    </div> <!-- container end -->
   </body>
 </html>
