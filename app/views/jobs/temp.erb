@@ -1,1 +1,0 @@
-<h1> <%= @job.title %> </h1><h3><%= @job.description %></h3><h3><% if @job.pending %><%= link_to "View Dashboard", jobs_path %><% else %><% if current_worker %><%= link_to "View Dashboard", jobs_path %><% end %><% end %>

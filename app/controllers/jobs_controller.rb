@@ -19,7 +19,7 @@ class JobsController < ApplicationController
       format.js
       end
     else
-        flash[:notice] = "Error please make sure you filled in everything"
+      flash[:notice] = "Error please make sure you filled in everything"
       render :new
     end
   end
